@@ -23,7 +23,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin: 5rem auto 0;
+    margin: 1rem auto 0;
 }
 
 .square {
@@ -35,7 +35,24 @@ h1 {
     align-items: center;
 }
 
-.square:hover {
+.hover:hover {
     background-color: #264653;
+    cursor: pointer;
+}
+
+#start {
+    margin: 1rem auto 0;
+    display: block;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: #f4a261;
+    color: #264653;
+    border: none;
+    border-radius: 1rem;
+    font-family: 'comic Neue', cursive;
+}
+
+#start:hover {
+    background-color: #e76f51;
     cursor: pointer;
 }
