@@ -28,6 +28,11 @@ h1 {
 
 .square {
     border: 0.3rem solid #264653;
+    font-size: 8rem;
+    color: #264653;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .square:hover {
