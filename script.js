@@ -3,6 +3,8 @@ let board = ['', '', '', '', '', '', '', '', ''];
 let playerTurn = 'X';
 let moves = 9;
 const label = document.querySelector('.label');
+let player1 = document.getElementById('player1');
+let player2 = document.getElementById('player2');
 
 const GameBoard = (() => {
 
@@ -35,7 +37,7 @@ const GameBoard = (() => {
                     GameBoard.updateBoard(newBoard);
                     removeHover(squares[i]);
                     playerTurn = Game.switchTurns();
-                    label.innerText = `Player ${playerTurn}'s Turn!`
+                    label.innerText = (playerTurn === "X"?`${player1.value}'s Turn!`:`${player2.value}'s Turn!`);
                     GameBoard.displayBoard();
                     moves--;
                     checkWin();
@@ -54,7 +56,9 @@ const GameBoard = (() => {
             board[2]==='X' && board[5] === 'X' && board[8] ==='X' ||
             board[0]==='X' && board[4] === 'X' && board[8] ==='X' ||
             board[2]==='X' && board[4] === 'X' && board[6] ==='X') {
-                label.innerText = "Player X wins!";
+                label.innerText = `${player1.value} wins!`;
+                player1.disabled = false;
+                player2.disabled = false;
                 for (let i = 0; i < gameBoard.children.length; i++) {
                     GameBoard.removeHover(gameBoard.children[i]);
                 }
@@ -66,21 +70,21 @@ const GameBoard = (() => {
             board[2]==='O' && board[5] === 'O' && board[8] ==='O' ||
             board[0]==='O' && board[4] === 'O' && board[8] ==='O' ||
             board[2]==='O' && board[4] === 'O' && board[6] ==='O') {
-                label.innerText = "Player O wins!";
+                label.innerText = `${player2.value} wins!`;
+                player1.disabled = false;
+                player2.disabled = false;
                 for (let i = 0; i < gameBoard.children.length; i++) {
                     GameBoard.removeHover(gameBoard.children[i]);
                 }
             } else if (moves === 0) {
                 label.innerText = "It's a tie!"
+                player1.disabled = false;
+                player2.disabled = false;
             }
     }
 
     return {displayBoard, board, removeHover, addHover, updateBoard, placeMarker};
 })();
-
-const Player = (name) => {
-
-}
 
 const Game = (() => {
 
@@ -97,11 +101,15 @@ const Game = (() => {
         playerTurn = 'X';
         moves = 9;
         e.target.innerText = "Restart Game";
-        label.innerText = `Player ${playerTurn}'s Turn!`
+        label.innerText = `${player1.value}'s Turn!`
+        player1.disabled = true;
+        player2.disabled = true;
     }
 
     return {playerTurn, switchTurns, startGame};
 })()
+
+
 
 document.getElementById('start').addEventListener('click', Game.startGame);
 gameBoard.addEventListener('mouseover', GameBoard.placeMarker);
