@@ -35,6 +35,7 @@ const GameBoard = (() => {
                     GameBoard.updateBoard(newBoard);
                     removeHover(squares[i]);
                     playerTurn = Game.switchTurns();
+                    label.innerText = `Player ${playerTurn}'s Turn!`
                     GameBoard.displayBoard();
                     moves--;
                     checkWin();
@@ -96,6 +97,7 @@ const Game = (() => {
         playerTurn = 'X';
         moves = 9;
         e.target.innerText = "Restart Game";
+        label.innerText = `Player ${playerTurn}'s Turn!`
     }
 
     return {playerTurn, switchTurns, startGame};
